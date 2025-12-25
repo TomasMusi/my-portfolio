@@ -2,9 +2,43 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
+import {
+  SiDotnet, SiReact, SiTypescript, SiJavascript,
+  SiPostgresql, SiDocker, SiNodedotjs, SiGit, SiTailwindcss,
+  SiCplusplus, SiArduino, SiPython, SiC,
+  SiRaspberrypi, SiMariadb, SiLinux,
+} from "react-icons/si";
+
+import {
+  TbBrandCSharp
+} from "react-icons/tb"
+
+import { VscAzure } from "react-icons/vsc";
+
 function App() {
   const [lang, setLang] = useState("cs");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const techIcons = [
+    { icon: <TbBrandCSharp />, name: "C#" },
+    { icon: <SiDotnet />, name: ".NET" },
+    { icon: <SiReact />, name: "React" },
+    { icon: <SiReact />, name: "React Native" },
+    { icon: <SiTypescript />, name: "TypeScript" },
+    { icon: <VscAzure />, name: "Azure" },
+    { icon: <SiLinux />, name: "Linux" },
+    { icon: <SiRaspberrypi />, name: "Raspberry Pi" },
+    { icon: <SiPostgresql />, name: "PostgreSQL" },
+    { icon: <SiMariadb />, name: "MariaDB" },
+    { icon: <SiNodedotjs />, name: "Node.js" },
+    { icon: <SiDocker />, name: "Docker" },
+    { icon: <SiCplusplus />, name: "C++" },
+    { icon: <SiC />, name: "C" },
+    { icon: <SiPython />, name: "Python" },
+    { icon: <SiGit />, name: "Git" },
+    { icon: <SiTailwindcss />, name: "Tailwind" },
+    { icon: <SiArduino />, name: "Arduino" },
+  ];
 
   const translations = {
     cs: {
@@ -12,7 +46,9 @@ function App() {
       experience: "Zkušenosti",
       projects: "Projekty",
       contact: "Kontakt",
-      status: "Dostupné pro nové projekty",
+      educationTitle: "Vzdělání",
+      techStackTitle: "Technologie",
+      status: "Dostupný pro nové projekty",
       greeting: "Ahoj, já jsem",
       work: "Moje práce",
       aboutTitle: "Profil",
@@ -27,6 +63,19 @@ function App() {
         { year: "2025", title: "Praxe", desc: "Full-stack vývojář v HAVEL & PARTNERS. Interní systémy pro lídra trhu." },
         { year: "Dnes", title: "Team Leading", desc: "Vedu tým frontendových a backendových vývojářů na projektu Linearium." }
       ],
+      edu: [
+        {
+          school: "Střední škola informatiky educanet",
+          field: "Informační technologie",
+          period: "2023 – současnost",
+          desc: "Komplexní příprava v oblasti IT zahrnující návrh a správu počítačových sítí, technické a programové vybavení. Studium klade důraz na kybernetickou bezpečnost, ekonomický přehled a management."
+        }
+      ],
+      hackathon: {
+        title: "Hackathon 2025",
+        achievement: "Účastník & Vývojář",
+        desc: "Intenzivní 24hodinový vývoj inovativního řešení. Práce v týmu, rychlé prototypování a prezentace výsledného produktu odborné porotě."
+      },
       exp: [
         {
           company: "HAVEL & PARTNERS",
@@ -71,9 +120,19 @@ function App() {
         }
       ],
       githubProjects: [
-        { year: "2025", title: "SwiftMate", desc: "Elegantní e-mailový klient pro Gmail. Rychlá správa pošty s AI prvky.", tech: ["Python 3.11", "PySide6", "Qt"] },
-        { year: "2025", title: "electree-pulseApp", desc: "Mobilní aplikace pro sledování a správu dat.", tech: ["React Native", "TypeScript"] },
-        { year: "2025", title: "leetcode_solutions", desc: "Řešení LeetCode problémů. Sbírka mé cesty za efektivními algoritmy a přístupy k programátorským výzvám.", tech: ["Algorithms", "Data Structures"] },
+        {
+          year: "2025",
+          title: "SwiftMate",
+          desc: "Desktopový Gmail klient. Nabízí efektivní třídění pošty a rychlé odesílání e-mailů v minimalistickém rozhraní.",
+          tech: ["Python 3.11", "PySide6", "Qt"]
+        },
+        {
+          year: "2025",
+          title: "electree-pulseApp",
+          desc: "Mobilní aplikace pro Energetickou společnost. Umožňuje klientům sledovat real-time data z jejich fotovoltaických systémů.",
+          tech: ["React Native", "TypeScript"]
+        },
+        { year: "2025", title: "leetcode_solutions", desc: "Řešení LeetCode problémů. Sbírka mé cesty za efektivními algoritmy.", tech: ["Algorithms", "Data Structures"] },
         { year: "2024", title: "ArduinoProjects", desc: "Kolekce praktických Arduino programů pro mikrokontroléry.", tech: ["C++", "Embedded"] }
       ]
     },
@@ -82,6 +141,8 @@ function App() {
       experience: "Experience",
       projects: "Projects",
       contact: "Contact",
+      educationTitle: "Education",
+      techStackTitle: "Tech Stack",
       status: "Available for new projects",
       greeting: "Hi, I am",
       work: "View my work",
@@ -97,6 +158,19 @@ function App() {
         { year: "2025", title: "Experience", desc: "Full-stack Developer at HAVEL & PARTNERS. Scaling internal law systems." },
         { year: "Today", title: "Team Leading", desc: "Leading a team of frontend and backend developers on the Linearium project." }
       ],
+      edu: [
+        {
+          school: "Secondary School of Informatics educanet",
+          field: "Information Technology",
+          period: "2023 – Present",
+          desc: "Comprehensive IT training covering network design and management, hardware, and software engineering. The curriculum emphasizes cybersecurity, economic literacy, and management."
+        }
+      ],
+      hackathon: {
+        title: "Hackathon 2025",
+        achievement: "Participant & Developer",
+        desc: "Intense 24-hour development of an innovative solution. Teamwork, rapid prototyping, and pitching the final product to a jury."
+      },
       exp: [
         {
           company: "HAVEL & PARTNERS",
@@ -141,8 +215,18 @@ function App() {
         }
       ],
       githubProjects: [
-        { year: "2025", title: "SwiftMate", desc: "Sleek desktop email client for Gmail. Send and manage emails smarter.", tech: ["Python 3.11", "PySide6", "Qt"] },
-        { year: "2025", title: "electree-pulseApp", desc: "Mobile application for data tracking and management.", tech: ["React Native", "TypeScript"] },
+        {
+          year: "2025",
+          title: "SwiftMate",
+          desc: "Desktop Gmail client. Features efficient email sorting and fast sending within a minimalist interface.",
+          tech: ["Python 3.11", "PySide6", "Qt"]
+        },
+        {
+          year: "2025",
+          title: "electree-pulseApp",
+          desc: "Mobile application for an Energy Company. Provides clients with real-time data from their photovoltaic systems.",
+          tech: ["React Native", "TypeScript"]
+        },
         { year: "2025", title: "leetcode_solutions", desc: "Solutions to LeetCode problems. A collection of my problem-solving journey.", tech: ["Algorithms", "Data Structures"] },
         { year: "2024", title: "ArduinoProjects", desc: "Collection of practical Arduino-based programs for microcontrollers.", tech: ["C++", "Embedded"] }
       ]
@@ -162,9 +246,9 @@ function App() {
         <div className="flex items-center gap-4 md:gap-12 text-left">
           <div className="hidden lg:flex gap-8 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
             <a href="#about" className="hover:text-white transition-colors">{t.about}</a>
+            <a href="#education" className="hover:text-white transition-colors">{t.educationTitle}</a>
             <a href="#experience" className="hover:text-white transition-colors">{t.experienceTitle}</a>
             <a href="#projects" className="hover:text-white transition-colors">{t.projects}</a>
-            <a href="#contact" className="hover:text-white transition-colors">{t.contact}</a>
           </div>
           <div className="flex gap-4">
             <button onClick={() => setLang("cs")} className={`text-[11px] font-black transition-all ${lang === "cs" ? "text-cyan-500 scale-110" : "text-gray-500 hover:text-white"}`}>CZ</button>
@@ -182,16 +266,16 @@ function App() {
         {isMenuOpen && (
           <motion.div initial={{ opacity: 0, x: "100%" }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: "100%" }} className="fixed inset-0 bg-black z-[40] flex flex-col items-center justify-center gap-8 text-2xl font-black uppercase tracking-tighter">
             <a href="#about" onClick={() => setIsMenuOpen(false)}>{t.about}</a>
+            <a href="#education" onClick={() => setIsMenuOpen(false)}>{t.educationTitle}</a>
             <a href="#experience" onClick={() => setIsMenuOpen(false)}>{t.experienceTitle}</a>
             <a href="#projects" onClick={() => setIsMenuOpen(false)}>{t.projects}</a>
-            <a href="#contact" onClick={() => setIsMenuOpen(false)}>{t.contact}</a>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col justify-center px-6 md:px-24 border-b border-white/5">
-        <motion.div key={lang} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="z-10 mt-[-40px] md:mt-[-20px] text-left">
+      <section className="relative h-screen flex flex-col justify-center px-6 md:px-24 border-b border-white/5 overflow-hidden">
+        <motion.div key={lang} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="z-10 mt-[-80px] md:mt-[-40px] text-left">
           <h2 className="text-cyan-500 font-mono text-[10px] md:text-xs mb-4 tracking-[0.3em] md:tracking-[0.5em] uppercase">{t.status}</h2>
           <h1 className="text-[14vw] md:text-[9vw] font-black leading-[0.9] md:leading-[0.85] tracking-tighter uppercase mb-8 md:mb-10 relative">
             {t.greeting} <br />
@@ -208,11 +292,30 @@ function App() {
             <motion.a href="#projects" whileHover={{ x: 10 }} className="text-white font-black italic text-xl md:text-4xl border-b-2 md:border-b-4 border-cyan-500 pb-1 transition-all hover:text-cyan-500 w-fit">{t.work}</motion.a>
           </div>
         </motion.div>
-        <motion.div animate={{ opacity: [0.2, 1, 0.2], y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2.5 }} className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
-          <div className="w-5 h-8 md:w-6 md:h-10 border-2 border-white/20 rounded-full flex justify-center p-1 md:p-1.5">
-            <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="w-1 md:w-1.5 h-1 md:h-1.5 bg-cyan-500 rounded-full shadow-[0_0_8px_#06b6d4]" />
-          </div>
-        </motion.div>
+
+        {/* Tech Stack Ticker - Fully Responsive */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-white/[0.02] border-t border-white/5 py-4 md:py-8" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+          <motion.div
+            animate={{ x: [0, -2000] }}
+            transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
+            className="flex gap-8 md:gap-16 items-center whitespace-nowrap"
+          >
+            {/* Render items 4 times to ensure infinite loop on all screen sizes */}
+            {[...techIcons, ...techIcons, ...techIcons, ...techIcons].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-3 md:gap-4 text-gray-500/60 hover:text-cyan-500 transition-colors cursor-default">
+                <span className="text-2xl md:text-4xl shrink-0">{item.icon}</span>
+                <span className="font-mono text-[9px] md:text-[11px] uppercase tracking-widest font-bold">{item.name}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Responsive Scroll Icon */}
+          <motion.div animate={{ opacity: [0.2, 1, 0.2], y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2.5 }} className="absolute -top-10 md:-top-14 left-1/2 -translate-x-1/2 flex flex-col items-center">
+            <div className="w-4 h-7 md:w-6 md:h-10 border-2 border-white/20 rounded-full flex justify-center p-1 md:p-1.5 backdrop-blur-sm">
+              <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="w-1 md:w-1.5 h-1 md:h-1.5 bg-cyan-500 rounded-full shadow-[0_0_8px_#06b6d4]" />
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Profile Section */}
@@ -230,6 +333,49 @@ function App() {
               </div>
               <p className="text-gray-400 text-xs md:text-base leading-relaxed max-w-md font-medium group-hover:text-gray-200">{fact.desc}</p>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Hackathon 2025 Highlight */}
+        <div className="mt-20 md:mt-32">
+          <motion.div
+            whileHover={{ scale: 1.01 }}
+            className="relative p-8 md:p-12 border-2 border-cyan-500/30 bg-cyan-500/5 overflow-hidden group rounded-lg"
+          >
+            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-40 transition-opacity">
+              <span className="text-cyan-500 font-black text-5xl md:text-7xl">#2025</span>
+            </div>
+            <div className="relative z-10 text-left">
+              <h3 className="text-cyan-500 font-mono text-xs tracking-[0.4em] uppercase mb-4">Achievement</h3>
+              <h4 className="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-6">{t.hackathon.title}</h4>
+              <p className="text-gray-300 text-lg md:text-2xl max-w-3xl leading-relaxed mb-8 font-medium">
+                {t.hackathon.desc}
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="h-px w-12 bg-cyan-500"></div>
+                <span className="text-white font-black uppercase tracking-widest text-sm italic">{t.hackathon.achievement}</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="py-20 md:py-32 px-6 md:px-24 border-t border-white/5 text-left">
+        <div className="flex items-center gap-4 md:gap-8 mb-16 md:mb-24">
+          <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter italic">{t.educationTitle}<span className="text-cyan-500">.</span></h2>
+          <div className="h-px flex-grow bg-white/20 hidden sm:block"></div>
+        </div>
+        <div className="space-y-16">
+          {t.edu.map((edu, i) => (
+            <div key={i} className="max-w-5xl">
+              <h3 className="text-cyan-500 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase mb-2">{edu.school}</h3>
+              <h4 className="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-tight">{edu.field}</h4>
+              <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start md:items-center">
+                <span className="text-gray-500 font-mono text-xs uppercase tracking-[0.2em] bg-white/5 px-6 py-2 rounded-full border border-white/10 shrink-0">{edu.period}</span>
+                <p className="text-gray-400 text-sm md:text-xl italic max-w-4xl opacity-80 leading-relaxed">{edu.desc}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>
@@ -321,7 +467,7 @@ function App() {
           </div>
           <div className="flex flex-wrap gap-8 md:gap-12">
             {[
-              { label: "LinkedIn", href: "https://linkedin.com/in/tomas-musil-757022312" },
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/tom%C3%A1%C5%A1-musil-82755537b/" },
               { label: "GitHub", href: "https://github.com/TomasMusi" },
               { label: "LeetCode", href: "https://leetcode.com/u/tom-musil/" },
               { label: "Email", href: "mailto:vase@email.cz" }
