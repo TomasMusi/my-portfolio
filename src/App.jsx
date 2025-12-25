@@ -15,6 +15,34 @@ import {
 
 import { VscAzure } from "react-icons/vsc";
 
+const TerminalLine = ({ command, output, delay }) => (
+  <div className="mb-4 text-left">
+    <div className="flex gap-2 text-[10px] md:text-xs font-mono">
+      <span className="text-cyan-500">$</span>
+      <motion.span
+        initial={{ width: 0 }}
+        whileInView={{ width: "auto" }}
+        transition={{ duration: 0.8, delay }}
+        viewport={{ once: true }}
+        className="text-white overflow-hidden whitespace-nowrap"
+      >
+        {command}
+      </motion.span>
+    </div>
+    {output && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.3, delay: delay + 0.8 }}
+        viewport={{ once: true }}
+        className="text-gray-500 text-[10px] md:text-xs font-mono mt-1 ml-4"
+      >
+        {output}
+      </motion.div>
+    )}
+  </div>
+);
+
 function App() {
   const [lang, setLang] = useState("cs");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,6 +76,13 @@ function App() {
       contact: "Kontakt",
       educationTitle: "Vzdělání",
       techStackTitle: "Technologie",
+      nowTitle: "Aktuální focus",
+      nowPoints: [
+        "Vývoj desktopových aplikací (C++/Qt, Python & PyQt)",
+        "Embedded systémy (Raspberry Pi & mikrokontroléry)",
+        "Machine Learning & AI (TensorFlow, PyTorch)",
+        "Správa a experimenty na vlastních Linux serverech"
+      ],
       status: "Dostupný pro nové projekty",
       greeting: "Ahoj, já jsem",
       work: "Moje práce",
@@ -101,22 +136,32 @@ function App() {
       ],
       projectsList: [
         {
+          year: "2025",
           title: "Lineárium",
           role: "Team Lead & Lead Architect",
           desc: "Vedení vývoje webové platformy ve spolupráci s Bohemia Interactive. Architektura na Reactu a PostgreSQL, zaměřená na škálovatelnost a koordinaci týmu.",
           tech: ["React", "PostgreSQL", "Node.js", "Team Management"]
         },
         {
+          year: "2025",
           title: "YSpace",
           role: "Low-level Engineer",
-          desc: "Projekt vybraný ESA. Vývoj palubního softwaru v C/C++ s důrazem na stabilitu nízkoúrovňového kódu.",
-          tech: ["C", "C++", "Embedded", "ESA Selection"]
+          desc: "Vývoj palubního softwaru v C/C++ s důrazem na stabilitu nízkoúrovňového kódu.",
+          tech: ["C", "C++", "Embedded",]
         },
         {
+          year: "2024",
           title: "TomFi",
           role: "Full-stack Creator",
           desc: "Bankovní simulace s důrazem na bezpečnost. Implementace 2FA a desktopového klienta v C++ s GTK.",
           tech: ["C++", "GTK", "Security", "2FA", "Full-stack"]
+        },
+        {
+          year: "2015",
+          title: "The Beginning",
+          role: "Hardware Enthusiast",
+          desc: "Sestavení prvního počítače v osmi letech, což odstartovalo mou cestu technologickým světem.",
+          tech: ["Hardware", "Assembly", "Logic"]
         }
       ],
       githubProjects: [
@@ -143,6 +188,13 @@ function App() {
       contact: "Contact",
       educationTitle: "Education",
       techStackTitle: "Tech Stack",
+      nowTitle: "Current Focus",
+      nowPoints: [
+        "Building desktop apps (C++/Qt, Python & PyQt)",
+        "Embedded development (Raspberry Pi & microcontrollers)",
+        "Machine Learning & AI (TensorFlow, PyTorch)",
+        "Managing and experimenting on home Linux servers"
+      ],
       status: "Available for new projects",
       greeting: "Hi, I am",
       work: "View my work",
@@ -196,22 +248,32 @@ function App() {
       ],
       projectsList: [
         {
+          year: "2025",
           title: "Lineárium",
           role: "Team Lead & Lead Architect",
           desc: "Leading the development of a web platform in collaboration with Bohemia Interactive. Architecture built on React and PostgreSQL.",
           tech: ["React", "PostgreSQL", "Node.js", "Team Management"]
         },
         {
+          year: "2025",
           title: "YSpace",
           role: "Low-level Engineer",
-          desc: "Project selected by ESA. Developing onboard software in C/C++ with emphasis on stability and low-level code efficiency.",
-          tech: ["C", "C++", "Embedded", "ESA Selection"]
+          desc: "Developing onboard software in C/C++ with emphasis on stability and low-level code efficiency.",
+          tech: ["C", "C++", "Embedded"]
         },
         {
+          year: "2024",
           title: "TomFi",
           role: "Full-stack Creator",
           desc: "Complex banking simulation focusing on security. Implementation of 2FA authentication and a C++/GTK desktop client.",
           tech: ["C++", "GTK", "Security", "2FA", "Full-stack"]
+        },
+        {
+          year: "2015",
+          title: "The Beginning",
+          role: "Hardware Enthusiast",
+          desc: "Building my first PC at age 8, sparking a lifelong passion for how hardware and software work together.",
+          tech: ["Hardware", "Assembly", "Logic"]
         }
       ],
       githubProjects: [
@@ -293,6 +355,8 @@ function App() {
           </div>
         </motion.div>
 
+
+
         {/* Tech Stack Ticker - Fully Responsive */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-white/[0.02] border-t border-white/5 py-4 md:py-8" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
           <motion.div
@@ -300,7 +364,6 @@ function App() {
             transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
             className="flex gap-8 md:gap-16 items-center whitespace-nowrap"
           >
-            {/* Render items 4 times to ensure infinite loop on all screen sizes */}
             {[...techIcons, ...techIcons, ...techIcons, ...techIcons].map((item, idx) => (
               <div key={idx} className="flex items-center gap-3 md:gap-4 text-gray-500/60 hover:text-cyan-500 transition-colors cursor-default">
                 <span className="text-2xl md:text-4xl shrink-0">{item.icon}</span>
@@ -340,12 +403,12 @@ function App() {
         <div className="mt-20 md:mt-32">
           <motion.div
             whileHover={{ scale: 1.01 }}
-            className="relative p-8 md:p-12 border-2 border-cyan-500/30 bg-cyan-500/5 overflow-hidden group rounded-lg"
+            className="relative p-8 md:p-12 border-2 border-cyan-500/30 bg-cyan-500/5 overflow-hidden group rounded-lg text-left"
           >
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-40 transition-opacity">
               <span className="text-cyan-500 font-black text-5xl md:text-7xl">#2025</span>
             </div>
-            <div className="relative z-10 text-left">
+            <div className="relative z-10">
               <h3 className="text-cyan-500 font-mono text-xs tracking-[0.4em] uppercase mb-4">Achievement</h3>
               <h4 className="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-6">{t.hackathon.title}</h4>
               <p className="text-gray-300 text-lg md:text-2xl max-w-3xl leading-relaxed mb-8 font-medium">
@@ -407,39 +470,73 @@ function App() {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Project Timeline Section */}
       <section id="projects" className="py-20 md:py-40 px-6 md:px-24 border-t border-white/5 bg-[#080808] text-left">
-        <div className="mb-12 md:mb-24">
-          <h2 className="text-3xl md:text-6xl font-black uppercase italic tracking-tighter mb-4 text-white">{t.projectsTitle}<span className="text-cyan-500">.</span></h2>
-          <p className="font-mono text-cyan-500 uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-sm font-bold opacity-60">{t.projectsSub}</p>
+        <div className="mb-12 md:mb-24 text-left">
+          <h2 className="text-3xl md:text-6xl font-black uppercase italic tracking-tighter mb-4 text-white">
+            {t.projectsTitle}<span className="text-cyan-500">.</span>
+          </h2>
+          <p className="font-mono text-cyan-500 uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-sm font-bold opacity-60">
+            {t.projectsSub}
+          </p>
         </div>
-        <div className="grid grid-cols-1 gap-8 md:gap-12">
-          {t.projectsList.map((project, i) => (
-            <motion.div key={i} className="group relative border border-white/5 bg-white/[0.02] p-6 md:p-12 hover:bg-white/[0.03] transition-all overflow-hidden text-left">
-              <div className="absolute -right-4 -bottom-10 text-[10rem] md:text-[20rem] font-black text-white/[0.02] italic pointer-events-none group-hover:text-cyan-500/[0.03] transition-colors">{i + 1}</div>
-              <div className="relative z-10">
-                <span className="text-cyan-500 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase mb-3 md:mb-4 block">{project.role}</span>
-                <h3 className="text-2xl md:text-7xl font-black uppercase tracking-tighter mb-4 md:mb-6 group-hover:text-cyan-400">{project.title}</h3>
-                <p className="text-gray-400 text-sm md:text-2xl leading-relaxed mb-6 md:mb-10 max-w-4xl font-medium">{project.desc}</p>
-                <div className="flex flex-wrap gap-2 md:gap-4">
-                  {project.tech.map((skill, si) => (
-                    <span key={si} className="text-[8px] md:text-xs font-black uppercase tracking-widest px-3 py-1.5 bg-white/5 border border-white/10 text-gray-400">{skill}</span>
-                  ))}
+
+        <div className="relative max-w-7xl mx-auto">
+          {/* Timeline Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 hidden md:block"></div>
+
+          <div className="space-y-24 md:space-y-32">
+            {t.projectsList.map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
+                className={`relative flex flex-col md:flex-row items-center justify-between ${i % 2 === 0 ? 'md:flex-row-reverse' : ''
+                  }`}
+              >
+                {/* Year Bubble */}
+                <div className="absolute left-4 md:left-1/2 top-0 -translate-x-1/2 z-10 hidden md:flex items-center justify-center w-12 h-12 bg-black border border-cyan-500 rounded-full text-[10px] font-black italic text-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                  {project.year}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Card */}
+                <div className="w-full md:w-[45%] text-left pl-10 md:pl-0">
+                  <div className="md:hidden text-cyan-500 font-mono text-[10px] font-bold mb-2 tracking-widest uppercase">
+                    {project.year}
+                  </div>
+                  <span className="text-cyan-500 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase mb-3 md:mb-4 block">
+                    {project.role}
+                  </span>
+                  <h3 className="text-2xl md:text-6xl font-black uppercase tracking-tighter mb-4 md:mb-6 hover:text-cyan-400 transition-colors cursor-default">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm md:text-2xl leading-relaxed mb-6 md:mb-10 max-w-4xl font-medium">
+                    {project.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-2 md:gap-4">
+                    {project.tech.map((skill, si) => (
+                      <span key={si} className="text-[8px] md:text-xs font-black uppercase tracking-widest px-3 py-1.5 bg-white/5 border border-white/10 text-gray-400">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="hidden md:block w-[45%]"></div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* GitHub Bento Grid */}
         <div className="mt-20 md:mt-32 text-left">
-          <div className="flex items-center gap-6 mb-12">
+          <div className="flex items-center gap-6 mb-12 text-left">
             <h3 className="text-xl md:text-2xl font-black uppercase tracking-widest">{t.githubTitle}</h3>
             <div className="h-px flex-grow bg-white/10"></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {t.githubProjects.map((small, idx) => (
-              <motion.div key={idx} whileHover={{ y: -5, borderColor: "rgba(6, 182, 212, 0.4)" }} className="bg-white/5 border border-white/10 p-6 flex flex-col justify-between group transition-all">
+              <motion.div key={idx} whileHover={{ y: -5, borderColor: "rgba(6, 182, 212, 0.4)" }} className="bg-white/5 border border-white/10 p-6 flex flex-col justify-between group transition-all text-left">
                 <div>
                   <div className="flex justify-between items-start mb-4">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500 group-hover:text-cyan-500 transition-colors"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.58V22"></path></svg>
@@ -452,30 +549,146 @@ function App() {
               </motion.div>
             ))}
           </div>
-          <motion.div className="mt-12 text-center text-left">
+          <motion.div className="mt-12 text-left">
             <a href="https://github.com/TomasMusi" target="_blank" className="inline-block text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 hover:text-cyan-500 transition-all">{t.viewAllGithub}</a>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Section / Footer */}
+      {/* NOW / LEARNING SECTION */}
+      {/* NOW / LEARNING SECTION */}
+      <section className="py-20 md:py-32 px-6 md:px-24 bg-[#080808] border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative p-8 md:p-12 bg-white/[0.02] border border-cyan-500/20 rounded-3xl overflow-hidden group"
+          >
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-10">
+                <div className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                </div>
+                <h3 className="text-cyan-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold">
+                  {t.nowTitle}
+                </h3>
+              </div>
+
+              {/* BODY (LIST) */}
+              <div className="space-y-4 md:space-y-6">
+                {t.nowPoints.map((point, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-4 group/item"
+                  >
+                    <span className="text-cyan-500 font-mono mt-1 text-lg">›</span>
+                    <p className="text-lg md:text-2xl font-black uppercase tracking-tighter leading-tight text-gray-200 group-hover/item:text-white transition-colors">
+                      {point}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-12 pt-8 border-t border-white/5 flex justify-between items-center">
+              <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">
+                {lang === "cs" ? "Poslední aktualizace" : "Last sync"}: {new Date().toLocaleDateString(lang === "cs" ? 'cs-CZ' : 'en-US')}
+              </span>
+              <div className="font-mono text-[10px] text-cyan-500/50 uppercase tracking-[0.2em] italic">
+                continuous_learning.sh
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
       <footer id="contact" className="py-20 px-6 md:px-24 border-t border-white/5 bg-[#050505] relative overflow-hidden text-left">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 relative z-10">
-          <div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-4">{lang === "cs" ? "Kontakt" : "Contact"}<span className="text-cyan-500">.</span></h2>
-            <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">Brno, Czech Republic · Available for hire</p>
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 relative z-10">
+
+          {/* LEFT COLUMN: Heading + Terminal */}
+          <div className="w-full lg:max-w-xl">
+            <h2 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-4">
+              {lang === "cs" ? "Kontakt" : "Contact"}<span className="text-cyan-500">.</span>
+            </h2>
+            <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-10">
+              Brno, Czech Republic · Available for hire
+            </p>
+
+            {/* TERMINAL FOOTER BOX - Umístěno přímo pod úvodním textem */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-black/40 border border-white/5 rounded-lg overflow-hidden backdrop-blur-sm"
+            >
+              {/* Mini Header */}
+              <div className="bg-white/5 px-3 py-1.5 flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+              </div>
+
+              {/* Terminal Content */}
+              <div className="p-5 font-mono">
+                <TerminalLine
+                  command="whoami"
+                  output="tomasmusil (fullstack-dev)"
+                  delay={0.2}
+                />
+                <TerminalLine
+                  command="date +'%H:%M:%S'"
+                  output={new Date().toLocaleTimeString()}
+                  delay={1.5}
+                />
+                <TerminalLine
+                  command="echo $READY_TO_CONNECT"
+                  output="true"
+                  delay={2.8}
+                />
+
+                <div className="flex gap-2 text-[9px] md:text-[11px] mt-1">
+                  <span className="text-cyan-500/70">$</span>
+                  <motion.span
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                    className="w-1.5 h-3.5 bg-cyan-500 inline-block"
+                  />
+                </div>
+              </div>
+            </motion.div>
           </div>
-          <div className="flex flex-wrap gap-8 md:gap-12">
+
+          {/* RIGHT COLUMN: Social Links */}
+          <div className="flex flex-wrap gap-8 md:gap-12 lg:pt-16">
             {[
               { label: "LinkedIn", href: "https://www.linkedin.com/in/tom%C3%A1%C5%A1-musil-82755537b/" },
               { label: "GitHub", href: "https://github.com/TomasMusi" },
               { label: "LeetCode", href: "https://leetcode.com/u/tom-musil/" },
               { label: "Email", href: "mailto:vase@email.cz" }
             ].map((link) => (
-              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-gray-400 hover:text-cyan-500 transition-all border-b border-transparent hover:border-cyan-500 pb-1">{link.label}</a>
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-gray-400 hover:text-cyan-500 transition-all border-b border-transparent hover:border-cyan-500 pb-1"
+              >
+                {link.label}
+              </a>
             ))}
           </div>
         </div>
+
+        {/* Copyright & System Status */}
         <div className="mt-20 flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-8 gap-4">
           <p className="text-[10px] font-mono text-gray-700 uppercase tracking-widest">© 2025 Tomáš Musil · All rights reserved</p>
           <div className="flex gap-4">
