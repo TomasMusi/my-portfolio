@@ -94,7 +94,7 @@ function App() {
       viewAllGithub: "Všechny repozitáře →",
       facts: [
         { year: "2015", title: "Začátek", desc: "V osmi letech stavím první PC. Technologie se stává mou identitou." },
-        { year: "2024", title: "Engineering", desc: "Středoškolák směřující k technickému titulu s jasnou vizí." },
+        { year: "2023", title: "Engineering", desc: "Středoškolák směřující k technickému titulu." },
         { year: "2025", title: "Praxe", desc: "Full-stack vývojář v HAVEL & PARTNERS. Interní systémy pro lídra trhu." },
         { year: "Dnes", title: "Team Leading", desc: "Vedu tým frontendových a backendových vývojářů na projektu Linearium." }
       ],
@@ -206,7 +206,7 @@ function App() {
       viewAllGithub: "See all repositories →",
       facts: [
         { year: "2015", title: "The Start", desc: "Built my first PC at age 8. Technology became my core identity." },
-        { year: "2024", title: "Engineering", desc: "High school student on a clear trajectory towards an engineering degree." },
+        { year: "2023", title: "Engineering", desc: "High school student on a clear trajectory towards an engineering degree." },
         { year: "2025", title: "Experience", desc: "Full-stack Developer at HAVEL & PARTNERS. Scaling internal law systems." },
         { year: "Today", title: "Team Leading", desc: "Leading a team of frontend and backend developers on the Linearium project." }
       ],
