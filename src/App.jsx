@@ -111,6 +111,11 @@ function App() {
         achievement: "Účastník & Vývojář",
         desc: "Intenzivní 24hodinový vývoj inovativního řešení. Práce v týmu, rychlé prototypování a prezentace výsledného produktu odborné porotě."
       },
+      tourDeApp: {
+        title: "Tour de App 2026",
+        achievement: "Vývojář & Soutěžící",
+        desc: "Vývoj komplexní webové aplikace podle reálného zadání. Týmová spolupráce, agilní vývoj a simulace komunikace s klientem v ostrém konkurenčním prostředí."
+      },
       exp: [
         {
           company: "HAVEL & PARTNERS",
@@ -222,6 +227,11 @@ function App() {
         title: "Hackathon 2025",
         achievement: "Participant & Developer",
         desc: "Intense 24-hour development of an innovative solution. Teamwork, rapid prototyping, and pitching the final product to a jury."
+      },
+      tourDeApp: {
+        title: "Tour de App 2026",
+        achievement: "Developer & Competitor",
+        desc: "Developing a complex web application based on industry requirements. Team collaboration, agile methodology, and client communication simulation."
       },
       exp: [
         {
@@ -399,8 +409,9 @@ function App() {
           ))}
         </div>
 
-        {/* Hackathon 2025 Highlight */}
-        <div className="mt-20 md:mt-32">
+        {/* Competition Achievements */}
+        <div className="mt-20 md:mt-32 space-y-8">
+          {/* Hackathon 2025 Highlight */}
           <motion.div
             whileHover={{ scale: 1.01 }}
             className="relative p-8 md:p-12 border-2 border-cyan-500/30 bg-cyan-500/5 overflow-hidden group rounded-lg text-left"
@@ -417,6 +428,27 @@ function App() {
               <div className="flex items-center gap-4">
                 <div className="h-px w-12 bg-cyan-500"></div>
                 <span className="text-white font-black uppercase tracking-widest text-sm italic">{t.hackathon.achievement}</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Tour de App 2026 Highlight */}
+          <motion.div
+            whileHover={{ scale: 1.01 }}
+            className="relative p-8 md:p-12 border-2 border-cyan-500/30 bg-cyan-500/5 overflow-hidden group rounded-lg text-left"
+          >
+            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-40 transition-opacity">
+              <span className="text-cyan-500 font-black text-5xl md:text-7xl">#2026</span>
+            </div>
+            <div className="relative z-10">
+              <h3 className="text-cyan-500 font-mono text-xs tracking-[0.4em] uppercase mb-4">Competition</h3>
+              <h4 className="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-6">{t.tourDeApp.title}</h4>
+              <p className="text-gray-300 text-lg md:text-2xl max-w-3xl leading-relaxed mb-8 font-medium">
+                {t.tourDeApp.desc}
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="h-px w-12 bg-cyan-500"></div>
+                <span className="text-white font-black uppercase tracking-widest text-sm italic">{t.tourDeApp.achievement}</span>
               </div>
             </div>
           </motion.div>
@@ -556,7 +588,6 @@ function App() {
       </section>
 
       {/* NOW / LEARNING SECTION */}
-      {/* NOW / LEARNING SECTION */}
       <section className="py-20 md:py-32 px-6 md:px-24 bg-[#080808] border-t border-white/5">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -623,21 +654,19 @@ function App() {
               Brno, Czech Republic · Available for hire
             </p>
 
-            {/* TERMINAL FOOTER BOX - Umístěno přímo pod úvodním textem */}
+            {/* TERMINAL FOOTER BOX */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="bg-black/40 border border-white/5 rounded-lg overflow-hidden backdrop-blur-sm"
             >
-              {/* Mini Header */}
               <div className="bg-white/5 px-3 py-1.5 flex items-center gap-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                 <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                 <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
               </div>
 
-              {/* Terminal Content */}
               <div className="p-5 font-mono">
                 <TerminalLine
                   command="whoami"
@@ -690,7 +719,7 @@ function App() {
 
         {/* Copyright & System Status */}
         <div className="mt-20 flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-8 gap-4">
-          <p className="text-[10px] font-mono text-gray-700 uppercase tracking-widest">© 2025 Tomáš Musil · All rights reserved</p>
+          <p className="text-[10px] font-mono text-gray-700 uppercase tracking-widest">© 2026 Tomáš Musil · All rights reserved</p>
           <div className="flex gap-4">
             <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_8px_#06b6d4]" />
             <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest italic">System Active</span>
