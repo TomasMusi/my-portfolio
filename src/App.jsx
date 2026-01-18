@@ -420,7 +420,7 @@ function App() {
               <span className="text-cyan-500 font-black text-5xl md:text-7xl">#2025</span>
             </div>
             <div className="relative z-10">
-              <h3 className="text-cyan-500 font-mono text-xs tracking-[0.4em] uppercase mb-4">Achievement</h3>
+              <h3 className="text-cyan-500 font-mono text-xs tracking-[0.4em] uppercase mb-4">Competition</h3>
               <h4 className="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-6">{t.hackathon.title}</h4>
               <p className="text-gray-300 text-lg md:text-2xl max-w-3xl leading-relaxed mb-8 font-medium">
                 {t.hackathon.desc}
